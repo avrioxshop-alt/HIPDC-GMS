@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HIPDC · Gate &amp; Logistics Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data/api-client.js"></script>
+  <script>
+    HIPDC_API.me().then(user => {
+      if (user.role.code === 'admin') {
+        window.location.replace('pages/admin/dashboard.html');
+        return;
+      }
+      const assignment = (user.gate_assignments || []).find(item => item.direction === 'entry' || item.direction === 'both')
+        || (user.gate_assignments || []).find(item => item.direction === 'exit');
+      window.location.replace(assignment
+        ? 'pages/' + (assignment.direction === 'exit' ? 'exit' : 'entry') + '/dashboard.html'
+        : 'pages/auth/login.html');
+    }).catch(() => window.location.replace('pages/auth/login.html'));
+  </script>
+</head>
+<body style="display: grid; place-items: center; min-height: 100vh; background: var(--bg);">
+  <div style="text-align: center; padding: 20px;">
+    <h2>Redirecting to HIPDC Gate Management...</h2>
+    <p class="muted" style="margin-top: 8px;">If you are not redirected automatically, <a href="pages/auth/login.html" style="color: var(--primary);">click here to Sign In</a>.</p>
+  </div>
+</body>
+</html>

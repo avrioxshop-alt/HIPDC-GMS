@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exit Goods Declaration · HIPDC Gate &amp; Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <div class="shell">
+    <!-- Sidebar Navigation with Fill Form Option on the Left -->
+    <aside>
+      <div class="sbrand">
+        <small>HIPDC Security</small>
+        <b>Gate Management</b>
+        <span>Exit Gate · Lane 2</span>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; gap: 8px;">
+        <a href="dashboard.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+          Dashboard
+        </a>
+        <!-- Dedicated Form Tab in Sidebar -->
+        <a href="fill-form.html" class="nav on">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Exit Goods Form
+        </a>
+        <a href="schedules.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          Schedules
+        </a>
+        <a href="vehicles.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M4 17v-4l2-5h12l2 5v4M7 17v2M17 17v2"/></svg>
+          Reg. Vehicles
+        </a>
+        <a href="logistics.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+          Logistics
+        </a>
+      </nav>
+
+      <a href="../auth/login.html" class="user" data-action="logout" title="Sign out">
+        <div class="av" id="sidebar_user_av">KB</div>
+        <div>
+          <b id="sidebar_user_name">Officer Kebede</b>
+          <small id="sidebar_user_sub">Head officer · Exit Gate</small>
+        </div>
+      </a>
+    </aside>
+
+    <!-- Main Content Tab View (Not a pop-up) -->
+    <main>
+      <div class="top">
+        <div>
+          <h1>Vehicle Exit &amp; Goods Declaration Form</h1>
+          <p class="muted">Create a goods declaration and submit it for approval. Submission is not a physical exit event.</p>
+        </div>
+        <div class="tr">
+          <span class="chip c-warn"><i class="dot"></i> Requires Admin Approval</span>
+          <button class="pill" type="button" data-action="toggle-lang">EN | አማ</button>
+          <button class="pill" type="button" data-action="toggle-theme">☾ Dark</button>
+          <span class="pill">Lane 2 Exit</span>
+        </div>
+      </div>
+
+      <!-- Main Form Input Panel -->
+      <div class="panel" id="form_input_panel">
+        <form id="exitGoodsForm" style="display: flex; flex-direction: column; gap: 20px;">
+          
+          <div class="sec">1. Vehicle &amp; Driver Information</div>
+          <div class="grid" style="--n: 4;">
+            <div class="field">
+              <label for="form_plate">License Plate Number</label>
+              <input class="inp" id="form_plate" name="plate" placeholder="Registered vehicle plate" required>
+            </div>
+            <div class="field">
+              <label for="form_driver">Driver Full Name</label>
+              <input class="inp" id="form_driver" name="driver" placeholder="Registered driver name">
+            </div>
+            <div class="field">
+              <label for="form_company">Tenant / Company</label>
+              <input class="inp" id="form_company" name="company" placeholder="Resolved from registered vehicle">
+            </div>
+            <div class="field">
+              <label for="form_phone">Driver Phone</label>
+              <input class="inp" id="form_phone" name="phone" placeholder="Optional">
+            </div>
+            <div class="field"><label for="form_gate_id">Assigned exit gate</label><select class="inp" id="form_gate_id" name="gate_id" required></select></div>
+            <div class="field"><label for="form_lane_id">Lane</label><select class="inp" id="form_lane_id" name="lane_id"></select></div>
+          </div>
+
+          <div class="sec">2. Consignment &amp; Logistics Route</div>
+          <div class="grid" style="--n: 3;">
+            <div class="field">
+              <label for="form_direction">Direction / Action</label>
+              <select class="inp" id="form_direction" name="direction">
+                <option value="Left with goods" selected>Left with goods (Export / Dispatch)</option>
+                <option value="Dropped off goods">Dropped off goods (Internal Park Delivery)</option>
+                <option value="Empty Return">Empty Vehicle Departure</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="form_load_type">Load Category</label>
+              <select class="inp" id="form_load_type" name="load_type">
+                <option value="Finished Goods" selected>Finished Goods (Garments / Textiles)</option>
+                <option value="Raw Material">Raw Material / Chemicals</option>
+                <option value="Machinery">Machinery / Heavy Equipment</option>
+                <option value="Waste / Scrap">Recyclable Waste / Scrap</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="form_destination">Destination / Port of Exit</label>
+              <input class="inp" id="form_destination" name="destination" placeholder="Destination, if relevant">
+            </div>
+          </div>
+
+          <div class="sec">3. Itemized Cargo &amp; Container Seals Manifest</div>
+          <div class="scroll" style="border: 1px solid var(--line); border-radius: var(--border-radius-md); background: var(--bg);">
+            <table>
+              <thead>
+                <tr>
+                  <th>Item Description</th>
+                  <th style="width: 110px;">Quantity</th>
+                  <th style="width: 130px;">Unit</th>
+                  <th>Container No.</th>
+                  <th>Seal No.</th>
+                  <th style="width: 60px; text-align: center;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="exit_items_tbody">
+                <tr>
+                  <td><input class="inp" name="item_name[]" required></td>
+                  <td><input class="inp" name="item_qty[]" type="number" min="0.001" step="0.001" style="width: 90px;" required></td>
+                  <td>
+                    <select class="inp" name="item_unit[]" style="width: 110px;">
+                      <option>Cartons</option>
+                      <option>Rolls</option>
+                      <option>Pallets</option>
+                      <option>Bags</option>
+                      <option>Pieces</option>
+                      <option>Kg</option>
+                    </select>
+                  </td>
+                  <td><input class="inp" name="container_no[]"></td>
+                  <td><input class="inp" name="seal_no[]"></td>
+                  <td style="text-align: center;">
+                    <button type="button" class="btn-close" onclick="this.closest('tr').remove()" title="Remove item">&times;</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="display: flex; justify-content: flex-start;">
+            <button type="button" class="btn sm soft" id="btn_add_item_row">+ Add Another Item Row</button>
+          </div>
+
+          <div class="sec">4. Authorization &amp; Security Verification</div>
+          <div class="grid" style="--n: 3;">
+            <div class="field">
+              <label for="form_waybill">Tenant Gate Pass / Waybill No.</label>
+              <input class="inp" id="form_waybill" name="waybill" placeholder="Optional reference">
+            </div>
+            <div class="field">
+              <label for="form_authorized_by">Authorized by (Tenant Representative)</label>
+              <input class="inp" id="form_authorized_by" name="authorized_by" placeholder="Optional tenant contact">
+            </div>
+            <div class="field">
+              <label for="form_model">Vehicle Make / Model</label>
+              <input class="inp" id="form_model" name="model" placeholder="Resolved from vehicle record">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="form_notes">Security Inspection Remarks &amp; Seal Check</label>
+            <textarea id="form_notes" name="notes" placeholder="Inspection remarks"></textarea>
+          </div>
+
+          <div class="acts" style="justify-content: flex-end; padding-top: 10px; border-top: 1px solid var(--line);">
+            <a href="dashboard.html" class="btn soft" style="text-decoration: none;">Cancel</a>
+            <button type="submit" class="btn lg" id="btn_submit_declaration">
+              Submit Declaration for Admin Approval
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Completion & PDF Download Panel (Appears after submission) -->
+      <div class="panel" id="form_completion_card" style="display: none; flex-direction: column; gap: 18px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 14px;">
+          <div>
+            <h2 style="font-size: 22px; font-weight: 700;">Goods declaration submitted</h2>
+            <p class="muted">Declaration reference: <b id="completed_ref_number" style="color: var(--primary);">—</b></p>
+          </div>
+          <span class="chip c-warn"><i class="dot"></i> Admin Approval Workflow</span>
+        </div>
+
+        <!-- Dynamic Real-Time Approval Status Banner -->
+        <div id="form_approval_status_banner" class="note c-warn">
+          <b>⏳ Pending administrator review</b><br>
+          The declaration is pending. No physical exit event has been recorded.
+        </div>
+
+        <div style="background: var(--bg); border: 1px solid var(--line); border-radius: var(--border-radius-lg); padding: 20px;">
+          <h3 style="font-size: 15px; margin-bottom: 8px;">Declaration summary</h3>
+          <p class="muted" style="margin-bottom: 16px;">The container/seal, waybill, destination, and contact values are stored as item remarks where entered; the database has no dedicated fields for these values.</p>
+
+          <div class="acts">
+            <!-- Dedicated PDF Download Button -->
+            <button type="button" class="btn lg pdf" id="btn_download_form_pdf">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15v-4h2a1.5 1.5 0 0 1 0 3H9"/><path d="M14 11v4"/><path d="M17 11h-3v4"/>
+              </svg>
+              Download Declaration Summary (PDF)
+            </button>
+
+            <!-- Unlock Gate Button (Enabled dynamically when Admin approves) -->
+            <button type="button" class="btn lg ok" id="btn_form_open_gate" disabled>
+              Record approved goods exit attempt
+            </button>
+            <button type="button" class="btn lg bad" id="btn_cancel_declaration" style="display:none">
+              Cancel declaration
+            </button>
+            <button type="button" class="btn lg soft" id="btn_retry_declaration" style="display:none">
+              Retry submission
+            </button>
+
+            <a href="dashboard.html" class="btn lg soft" style="text-decoration: none;">Return to Dashboard</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="../../js/core/utilities.js"></script>
+  <script src="../../js/core/theme.js"></script>
+  <script src="../../js/core/navigation.js"></script>
+  <script src="../../js/core/modal.js"></script>
+  <script src="../../js/core/notifications.js"></script>
+  <script src="../../js/components/approval-badge.js"></script>
+  <script src="../../js/components/gate-controls.js"></script>
+  <script src="../../js/components/pdf-export.js"></script>
+  <script src="../../js/data/api-client.js"></script>
+  <script src="../../js/exit/exit.js"></script>
+  <script src="../../js/app.js"></script>
+</body>
+</html>

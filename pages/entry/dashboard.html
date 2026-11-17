@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entry Dashboard · HIPDC Gate &amp; Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <div class="shell">
+    <!-- Sidebar Navigation -->
+    <aside>
+      <div class="sbrand">
+        <small>HIPDC Security</small>
+        <b>Gate Management</b>
+        <span>Entry Gate · Lane 1</span>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; gap: 8px;">
+        <a href="dashboard.html" class="nav on">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+          Dashboard
+        </a>
+        <a href="schedules.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          Schedules
+        </a>
+        <a href="vehicles.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M4 17v-4l2-5h12l2 5v4M7 17v2M17 17v2"/></svg>
+          Reg. Vehicles
+        </a>
+        <a href="logistics.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+          Logistics
+        </a>
+      </nav>
+
+      <!-- User Profile at Sidebar Bottom -->
+      <a href="../auth/login.html" class="user" data-action="logout" title="Sign out">
+        <div class="av" id="sidebar_user_av">AK</div>
+        <div>
+          <b id="sidebar_user_name">Officer Abebe</b>
+          <small id="sidebar_user_sub">Head officer · Entry Gate</small>
+        </div>
+      </a>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main>
+      <!-- Top Bar -->
+      <div class="top">
+        <div>
+          <h1>Entry Gate Dashboard</h1>
+          <p class="muted">Manual operator observations and server-side authorization · no camera or barrier control is connected</p>
+        </div>
+        <div class="tr">
+          <span class="pill"><i class="dot"></i> Hardware not connected</span>
+          <button class="pill" type="button" data-action="toggle-lang">EN | አማ</button>
+          <button class="pill" type="button" data-action="toggle-theme">☾ Dark</button>
+          <span class="pill">Day shift · 06:00–18:00</span>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Band -->
+      <div class="band" style="grid-template-columns: repeat(5, 1fr);">
+        <div class="stat"><span>Scheduled Vehicles</span><b data-dashboard="expected_schedules_today">—</b></div>
+        <div class="stat"><span>Entered Today</span><b data-dashboard="vehicle_entries">—</b></div>
+        <div class="stat"><span>Exited Today</span><b data-dashboard="vehicle_exits">—</b></div>
+        <div class="stat"><span>Vehicles in Park</span><b data-dashboard="vehicle_presence">—</b></div>
+        <div class="stat"><span>Visitors Inside</span><b data-dashboard="visitor_presence">—</b></div>
+      </div>
+
+      <div class="band">
+        <div class="cams">
+          <div class="cam big">
+            <div>
+              <b>Manual vehicle observation</b>
+            </div>
+            <div class="muted">Enter a plate actually observed by the officer. No ANPR feed is connected.</div>
+          </div>
+          <div class="cam">No live camera stream available</div>
+        </div>
+      </div>
+
+      <div class="band" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+        <form class="panel" id="entry_access_form">
+          <h3>Record observed vehicle entry attempt</h3>
+          <p class="muted">The backend checks active registration, schedule, gate assignment, and approved access request. It does not open a barrier.</p>
+          <div class="field"><label for="entry_observed_plate">Observed plate</label><input class="inp" id="entry_observed_plate" name="plate" required></div>
+          <div class="field"><label for="entry_gate_id">Assigned entry gate</label><select class="inp" id="entry_gate_id" name="gate_id" required></select></div>
+          <div class="field"><label for="entry_lane_id">Lane</label><select class="inp" id="entry_lane_id" name="lane_id"></select></div>
+          <div class="field"><label for="entry_schedule_id">Today's schedule (optional)</label><select class="inp" id="entry_schedule_id" name="schedule_id"><option value="">No schedule selected</option></select></div>
+          <button class="btn" type="submit">Record authorization result</button>
+        </form>
+        <form class="panel" id="entry_approval_form">
+          <h3>Request access approval</h3>
+          <p class="muted">For a registered vehicle that requires an approval. Submission does not authorize entry.</p>
+          <div class="field"><label for="entry_request_plate">Vehicle plate</label><input class="inp" id="entry_request_plate" name="plate" required></div>
+          <div class="field"><label for="entry_request_gate_id">Assigned entry gate</label><select class="inp" id="entry_request_gate_id" name="gate_id" required></select></div>
+          <div class="field"><label for="entry_request_lane_id">Lane</label><select class="inp" id="entry_request_lane_id" name="lane_id"></select></div>
+          <div class="field"><label for="entry_request_note">Reason</label><textarea id="entry_request_note" name="note" required></textarea></div>
+          <button class="btn warn" type="submit">Submit for approval</button>
+        </form>
+        <form class="panel" id="entry_visitor_form">
+          <h3>Visitor gate operation</h3>
+          <p class="muted">Enter the pass token and confirm the visitor is physically at the gate. This records the result; no scanner is connected.</p>
+          <div class="field"><label for="entry_visitor_token">Visitor pass token</label><input class="inp" id="entry_visitor_token" name="qr_token" required maxlength="64"></div>
+          <div class="field"><label for="entry_visitor_gate_id">Assigned entry gate</label><select class="inp" id="entry_visitor_gate_id" name="gate_id" required></select></div>
+          <div class="field"><label for="entry_visitor_lane_id">Lane</label><select class="inp" id="entry_visitor_lane_id" name="lane_id"></select></div>
+          <button class="btn soft" type="submit">Record visitor entry attempt</button>
+        </form>
+        <form class="panel" id="entry_visitor_validate_form">
+          <h3>Validate visitor pass only</h3>
+          <p class="muted">Validation checks gate scope and validity but does not create an entry event.</p>
+          <div class="field"><label for="entry_validate_token">Visitor pass token</label><input class="inp" id="entry_validate_token" name="qr_token" required maxlength="64"></div>
+          <div class="field"><label for="entry_validate_gate_id">Assigned entry gate</label><select class="inp" id="entry_validate_gate_id" name="gate_id" required></select></div>
+          <button class="btn soft" type="submit">Validate token</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="../../js/core/utilities.js"></script>
+  <script src="../../js/core/theme.js"></script>
+  <script src="../../js/core/navigation.js"></script>
+  <script src="../../js/core/modal.js"></script>
+  <script src="../../js/core/notifications.js"></script>
+  <script src="../../js/components/approval-badge.js"></script>
+  <script src="../../js/components/gate-controls.js"></script>
+  <script src="../../js/components/pdf-export.js"></script>
+  <script src="../../js/data/api-client.js"></script>
+  <script src="../../js/entry/entry.js"></script>
+  <script src="../../js/app.js"></script>
+</body>
+</html>

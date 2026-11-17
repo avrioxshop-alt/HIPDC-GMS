@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operations &amp; Reports · HIPDC</title>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="sbrand"><small>HIPDC Administration</small><b>Park Console</b><span>Operations management</span></div>
+      <nav style="display:flex;flex-direction:column;gap:8px;">
+        <a href="dashboard.html" class="nav">Dashboard</a>
+        <a href="approvals.html" class="nav">Approvals</a>
+        <a href="schedules.html" class="nav">Schedules</a>
+        <a href="visitors.html" class="nav">Visitors</a>
+        <a href="vehicles.html" class="nav">Vehicles</a>
+        <a href="logistics.html" class="nav">Logistics</a>
+        <a href="cameras.html" class="nav">Camera metadata</a>
+        <a href="users.html" class="nav">Users &amp; roles</a>
+        <a href="operations.html" class="nav on">Operations &amp; reports</a>
+      </nav>
+      <a href="../auth/login.html" class="user" data-action="logout" title="Sign out">
+        <div class="av" id="sidebar_user_av">U</div>
+        <div><b id="sidebar_user_name">User</b><small id="sidebar_user_sub">Administrator</small></div>
+      </a>
+    </aside>
+    <main>
+      <div class="top">
+        <div><h1>Operations &amp; Reports</h1><p class="muted">Operational registries, officer shifts, reports, notifications, and immutable audit history.</p></div>
+        <div class="tr"><button class="pill" data-action="toggle-theme">☾ Dark</button><button class="pill" data-action="toggle-lang">EN | አማ</button></div>
+      </div>
+
+      <div class="band" style="grid-template-columns:repeat(2,minmax(0,1fr));">
+        <section class="panel">
+          <h3>Companies</h3>
+          <form id="company_form">
+            <div class="field"><label>Name</label><input class="inp" name="name" required maxlength="160"></div>
+            <div class="field"><label>Registration number</label><input class="inp" name="registration_number" maxlength="80"></div>
+            <div class="field"><label>Contact person</label><input class="inp" name="contact_person" maxlength="120"></div>
+            <div class="field"><label>Phone</label><input class="inp" name="phone"></div>
+            <div class="field"><label>Email (optional)</label><input class="inp" type="email" name="email"></div>
+            <div class="field"><label>Address</label><input class="inp" name="address" maxlength="255"></div>
+            <button class="btn" type="submit">Register company</button>
+          </form>
+          <div class="scroll"><table><thead><tr><th>Company</th><th>Registration</th><th>Status</th><th>Actions</th></tr></thead><tbody id="company_rows"></tbody></table></div>
+        </section>
+        <section class="panel">
+          <h3>Drivers</h3>
+          <form id="driver_form">
+            <div class="field"><label>Full name</label><input class="inp" name="full_name" required maxlength="120"></div>
+            <div class="field"><label>Company</label><select class="inp" name="company_id" id="driver_company_id"></select></div>
+            <div class="field"><label>Identification number</label><input class="inp" name="identification_number"></div>
+            <div class="field"><label>License number</label><input class="inp" name="license_number"></div>
+            <div class="field"><label>Phone</label><input class="inp" name="phone"></div>
+            <button class="btn" type="submit">Register driver</button>
+          </form>
+          <div class="scroll"><table><thead><tr><th>Driver</th><th>Company</th><th>License</th><th>Status</th><th>Actions</th></tr></thead><tbody id="driver_rows"></tbody></table></div>
+        </section>
+        <section class="panel">
+          <h3>Gates and lanes</h3>
+          <form id="gate_form">
+            <div class="field"><label>Gate code</label><input class="inp" name="code" required maxlength="64"></div>
+            <div class="field"><label>Gate name</label><input class="inp" name="name" required maxlength="120"></div>
+            <div class="field"><label>Location</label><input class="inp" name="location" maxlength="160"></div>
+            <div class="field"><label>Description</label><input class="inp" name="description" maxlength="255"></div>
+            <label><input type="checkbox" name="supports_entry" checked> Entry</label>
+            <label><input type="checkbox" name="supports_exit" checked> Exit</label>
+            <button class="btn" type="submit">Create gate</button>
+          </form>
+          <form id="lane_form">
+            <h4>Lane</h4>
+            <div class="field"><label>Gate</label><select class="inp" name="gate_id" id="lane_gate_id" required></select></div>
+            <div class="field"><label>Lane code</label><input class="inp" name="code" required maxlength="64"></div>
+            <div class="field"><label>Lane name</label><input class="inp" name="name" required maxlength="120"></div>
+            <div class="field"><label>Direction</label><select class="inp" name="direction"><option>entry</option><option>exit</option><option>both</option></select></div>
+            <button class="btn soft" type="submit">Create lane</button>
+          </form>
+          <div class="scroll"><table><thead><tr><th>Gate</th><th>Code</th><th>Entry/exit</th><th>Status</th><th>Actions</th></tr></thead><tbody id="gate_rows"></tbody></table></div>
+          <div class="scroll"><table><thead><tr><th>Lane</th><th>Gate</th><th>Direction</th><th>Status</th><th>Actions</th></tr></thead><tbody id="lane_rows"></tbody></table></div>
+        </section>
+        <section class="panel">
+          <h3>Officer shifts</h3>
+          <form id="shift_form">
+            <div class="field"><label>Officer</label><select class="inp" name="officer_id" id="shift_officer_id" required></select></div>
+            <div class="field"><label>Gate</label><select class="inp" name="gate_id" id="shift_gate_id" required></select></div>
+            <div class="field"><label>Lane</label><select class="inp" name="lane_id" id="shift_lane_id"></select></div>
+            <div class="field"><label>Direction</label><select class="inp" name="direction"><option>entry</option><option>exit</option></select></div>
+            <div class="field"><label>Starts</label><input class="inp" type="datetime-local" name="starts_at" required></div>
+            <div class="field"><label>Ends</label><input class="inp" type="datetime-local" name="ends_at" required></div>
+            <div class="field"><label>Notes</label><textarea name="notes"></textarea></div>
+            <button class="btn" type="submit">Assign shift</button>
+          </form>
+          <div class="scroll"><table><thead><tr><th>Officer</th><th>Gate</th><th>Window</th><th>Status</th></tr></thead><tbody id="shift_rows"></tbody></table></div>
+        </section>
+        <section class="panel">
+          <h3>Create user account</h3>
+          <form id="user_form">
+            <div class="field"><label>Full name</label><input class="inp" name="full_name" required maxlength="120"></div>
+            <div class="field"><label>Username</label><input class="inp" name="username" required maxlength="64"></div>
+            <div class="field"><label>Email</label><input class="inp" type="email" name="email"></div>
+            <div class="field"><label>Temporary password</label><input class="inp" type="password" name="password" required minlength="12" maxlength="72" autocomplete="new-password"></div>
+            <div class="field"><label>Role</label><select class="inp" name="role_id" id="user_role_id" required></select></div>
+            <div class="field"><label>Gate assignment (officers)</label><select class="inp" name="gate_id" id="user_gate_id"><option value="">No gate assignment</option></select></div>
+            <div class="field"><label>Direction</label><select class="inp" name="direction"><option>entry</option><option>exit</option><option>both</option></select></div>
+            <button class="btn" type="submit">Create account</button>
+          </form>
+          <div class="scroll"><table><thead><tr><th>User</th><th>Role</th><th>Status</th><th>Gate assignments</th><th>Actions</th></tr></thead><tbody id="user_rows"></tbody></table></div>
+        </section>
+        <section class="panel">
+          <h3>Operational reports</h3>
+          <form id="report_form">
+            <div class="field"><label>Report</label><select class="inp" name="report">
+              <option value="vehicle_movements">Vehicle movements</option><option value="visitor_activity">Visitor activity</option>
+              <option value="goods_declarations">Goods declarations</option><option value="approvals">Approvals</option><option value="gate_events">Gate events</option>
+            </select></div>
+            <div class="field"><label>From</label><input class="inp" type="date" name="from"></div>
+            <div class="field"><label>To</label><input class="inp" type="date" name="to"></div>
+            <div class="field"><label>Direction</label><select class="inp" name="direction"><option value="">All</option><option>entry</option><option>exit</option></select></div>
+            <div class="field"><label>Status (approvals/goods)</label><select class="inp" name="status"><option value="">All</option><option>pending</option><option>approved</option><option>denied</option><option>cancelled</option><option>draft</option></select></div>
+            <div class="field"><label>Company</label><select class="inp" name="company_id" id="report_company_id"></select></div>
+            <div class="field"><label>Gate</label><select class="inp" name="gate_id" id="report_gate_id"></select></div>
+            <button class="btn" type="submit">Run report</button>
+            <button class="btn soft" type="button" id="report_csv">Export CSV</button>
+          </form>
+          <div class="scroll"><table><thead id="report_head"></thead><tbody id="report_rows"></tbody></table></div>
+          <div class="acts"><button class="btn sm soft" type="button" id="report_prev">Previous</button><span id="report_pagination" class="muted"></span><button class="btn sm soft" type="button" id="report_next">Next</button></div>
+        </section>
+        <section class="panel">
+          <h3>My notifications</h3>
+          <div class="acts"><button class="btn sm soft" id="notification_read_all">Mark all read</button></div>
+          <div id="notification_rows"></div>
+        </section>
+        <section class="panel">
+          <h3>Read-only audit log</h3>
+          <form id="audit_form">
+            <div class="field"><label>Action</label><input class="inp" name="action"></div>
+            <div class="field"><label>Entity type</label><input class="inp" name="entity_type"></div>
+            <div class="field"><label>Actor ID</label><input class="inp" type="number" min="1" name="actor_id"></div>
+            <button class="btn soft" type="submit">Filter audit events</button>
+          </form>
+          <div class="scroll"><table><thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Entity</th><th>ID</th></tr></thead><tbody id="audit_rows"></tbody></table></div>
+          <div class="acts"><button class="btn sm soft" type="button" id="audit_prev">Previous</button><span id="audit_pagination" class="muted"></span><button class="btn sm soft" type="button" id="audit_next">Next</button></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div id="toast"></div>
+  <script src="../../js/core/utilities.js"></script>
+  <script src="../../js/core/theme.js"></script>
+  <script src="../../js/core/navigation.js"></script>
+  <script src="../../js/core/modal.js"></script>
+  <script src="../../js/core/notifications.js"></script>
+  <script src="../../js/data/api-client.js"></script>
+  <script src="../../js/admin/operations.js"></script>
+  <script src="../../js/app.js"></script>
+</body>
+</html>

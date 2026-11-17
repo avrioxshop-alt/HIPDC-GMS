@@ -1,0 +1,651 @@
+/* ==========================================================================
+   HIPDC Gate & Logistics Management - Component Library
+   Includes: Buttons, Modals with Close (X), Notifications with Close (X),
+   Approval Badges, PDF Actions, Empty States, and Ethiopian ANPR Plates
+   ========================================================================== */
+
+/* ---------- Base Interactive Elements ---------- */
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  font-size: 13px;
+  background: var(--primary);
+  color: var(--onprimary);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn:hover {
+  background: var(--primary-hover);
+}
+
+.btn.sm {
+  padding: 7px 12px;
+  font-size: 12px;
+  border-radius: var(--border-radius-sm);
+  font-weight: 500;
+}
+
+.btn.lg {
+  padding: 14px 22px;
+  font-size: 14px;
+  border-radius: var(--border-radius-md);
+}
+
+.btn.soft {
+  background: var(--soft);
+  color: var(--c-info);
+  box-shadow: none;
+}
+
+.btn.soft:hover {
+  background: var(--c-info-bg);
+  color: var(--primary-hover);
+}
+
+.btn.warn {
+  background: var(--c-warn-bg);
+  color: var(--c-warn);
+  border: 1px solid var(--c-warn-border);
+  box-shadow: none;
+}
+
+.btn.warn:hover {
+  background: #f7dfbe;
+}
+
+.btn.bad {
+  background: var(--c-bad-bg);
+  color: var(--c-bad);
+  border: 1px solid var(--c-bad-border);
+  box-shadow: none;
+}
+
+.btn.bad:hover {
+  background: #f7cece;
+}
+
+.btn.ok {
+  background: var(--c-ok-bg);
+  color: var(--c-ok);
+  border: 1px solid var(--c-ok-border);
+}
+
+.btn.ok:hover {
+  background: #c7edd4;
+}
+
+.btn.pdf {
+  background: #c93a3a;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.btn.pdf:hover {
+  background: #a82e2e;
+}
+
+.btn:disabled, .btn[disabled] {
+  background: var(--panel) !important;
+  color: var(--muted) !important;
+  border-color: transparent !important;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---------- Close (X) Buttons ---------- */
+.btn-close, .modal-close-btn, .toast-close-btn, .alert-close-btn {
+  background: transparent;
+  color: var(--muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-close:hover, .modal-close-btn:hover, .toast-close-btn:hover, .alert-close-btn:hover {
+  background: var(--panel);
+  color: var(--ink);
+  transform: scale(1.05);
+}
+
+.toast-close-btn {
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.toast-close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* ---------- Navigation Items ---------- */
+.nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--side-border);
+  background: var(--side-item-bg);
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13.5px;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: all var(--transition-fast);
+}
+
+.nav:hover {
+  background: var(--side-item-hover);
+  color: #ffffff;
+}
+
+.nav.on {
+  background: var(--sky);
+  color: #0e1b26;
+  border-color: var(--sky);
+  font-weight: 600;
+}
+
+.nav.on svg {
+  stroke: #0e1b26;
+}
+
+.nav .bd {
+  margin-left: auto;
+  background: var(--c-bad);
+  color: #ffffff;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+}
+
+.nav .bd.warn {
+  background: var(--c-warn);
+}
+
+/* User Profile in Sidebar */
+.user {
+  margin-top: auto;
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--border-radius-lg);
+  padding: 12px 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.user small {
+  color: var(--muted);
+  display: block;
+  font-size: 11px;
+}
+
+.av {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* Header Pills */
+.pill {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--border-radius-sm);
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.pill.ok {
+  background: var(--c-ok-bg);
+  border-color: transparent;
+  color: var(--c-ok);
+  font-weight: 600;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Status Chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  background: var(--panel);
+  color: var(--muted);
+}
+
+.chip.c-warn {
+  background: var(--c-warn-bg);
+  color: var(--c-warn);
+  border: 1px solid var(--c-warn-border);
+}
+
+.chip.c-ok {
+  background: var(--c-ok-bg);
+  color: var(--c-ok);
+  border: 1px solid var(--c-ok-border);
+}
+
+.chip.c-info {
+  background: var(--c-info-bg);
+  color: var(--c-info);
+  border: 1px solid var(--c-info-border);
+}
+
+.chip.c-bad {
+  background: var(--c-bad-bg);
+  color: var(--c-bad);
+  border: 1px solid var(--c-bad-border);
+}
+
+/* Approval Workflow Badges */
+.approval-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.approval-badge.pending {
+  background: var(--c-warn-bg);
+  color: var(--c-warn);
+  border: 1px solid var(--c-warn-border);
+}
+
+.approval-badge.approved {
+  background: var(--c-ok-bg);
+  color: var(--c-ok);
+  border: 1px solid var(--c-ok-border);
+}
+
+.approval-badge.rejected {
+  background: var(--c-bad-bg);
+  color: var(--c-bad);
+  border: 1px solid var(--c-bad-border);
+}
+
+/* ANPR Camera Grid */
+.cams {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  height: 540px;
+}
+
+.cam {
+  border-radius: var(--border-radius-lg);
+  background: linear-gradient(135deg, #1c2f42, #0b141c 70%);
+  position: relative;
+  overflow: hidden;
+  color: #cfe3f3;
+  padding: 14px;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cam.big {
+  grid-row: span 2;
+}
+
+.cam::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 60px;
+  top: -60px;
+  background: linear-gradient(transparent, rgba(156, 211, 255, 0.08), transparent);
+  animation: scan 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  to { top: 100%; }
+}
+
+.cam i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d64545;
+  margin-right: 8px;
+  animation: blinkDot 1.4s infinite;
+}
+
+@keyframes blinkDot {
+  50% { opacity: 0.3; }
+}
+
+/* Ethiopian License Plate */
+.plate {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  border: 2px solid var(--sky);
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.bigplate {
+  border: 2px solid var(--ink);
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  padding: 12px;
+  background: #ffffff;
+  color: #0e1b26;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Modal Overlay & Card with Close Button */
+.ov {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 30, 45, 0.6);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+  padding: 20px;
+  overflow-y: auto;
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  background: var(--surface);
+  border-radius: var(--border-radius-xl);
+  padding: 26px;
+  width: 560px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-modal);
+  position: relative;
+  border: 1px solid var(--line);
+}
+
+.modal.wide {
+  width: 820px;
+}
+
+.mh {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.mh h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.acts {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.acts .btn {
+  flex: 1;
+}
+
+/* Toast Notifications with Dismiss Button */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--ink);
+  color: var(--bg);
+  padding: 10px 18px;
+  border-radius: var(--border-radius-md);
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
+  z-index: 200;
+  opacity: 0;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  max-width: 90vw;
+  pointer-events: none;
+}
+
+#toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Tabs & Category Filter */
+.tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tabs button, .tabs a {
+  padding: 8px 16px;
+  border-radius: 99px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-weight: 500;
+  font-size: 12.5px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.tabs button.on, .tabs a.on {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  font-weight: 600;
+}
+
+/* Key-Value Summary Component */
+.kv {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kv div {
+  background: var(--bg);
+  border-radius: var(--border-radius-sm);
+  padding: 9px 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.kv span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.kv b {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* Request Approval Card for Admin */
+.req {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--border-radius-md);
+  background: var(--bg);
+  transition: border-color var(--transition-fast);
+}
+
+.req:hover {
+  border-color: var(--primary);
+}
+
+/* Empty State Component */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--bg);
+  border: 1px dashed var(--line);
+  border-radius: var(--border-radius-lg);
+  margin: 12px 0;
+}
+
+.empty-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+}
+
+.empty-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.empty-desc {
+  font-size: 12.5px;
+  color: var(--muted);
+  max-width: 420px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.empty-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Notice box */
+.note {
+  border-radius: var(--border-radius-sm);
+  padding: 12px 14px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.note.c-warn {
+  background: var(--c-warn-bg);
+  color: var(--c-warn);
+  border: 1px solid var(--c-warn-border);
+}
+
+.note.c-info {
+  background: var(--c-info-bg);
+  color: var(--c-info);
+  border: 1px solid var(--c-info-border);
+}
+
+.note.c-bad {
+  background: var(--c-bad-bg);
+  color: var(--c-bad);
+  border: 1px solid var(--c-bad-border);
+}

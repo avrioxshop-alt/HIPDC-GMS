@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exit Dashboard · HIPDC Gate &amp; Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <div class="shell">
+    <!-- Sidebar Navigation with Fill Form Option on the Left -->
+    <aside>
+      <div class="sbrand">
+        <small>HIPDC Security</small>
+        <b>Gate Management</b>
+        <span>Exit Gate · Lane 2</span>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; gap: 8px;">
+        <a href="dashboard.html" class="nav on">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+          Dashboard
+        </a>
+        <!-- Dedicated Fill Form Tab on Left Navigation -->
+        <a href="fill-form.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Exit Goods Form
+        </a>
+        <a href="schedules.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          Schedules
+        </a>
+        <a href="vehicles.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M4 17v-4l2-5h12l2 5v4M7 17v2M17 17v2"/></svg>
+          Reg. Vehicles
+        </a>
+        <a href="logistics.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+          Logistics
+        </a>
+      </nav>
+
+      <a href="../auth/login.html" class="user" data-action="logout" title="Sign out">
+        <div class="av" id="sidebar_user_av">KB</div>
+        <div>
+          <b id="sidebar_user_name">Officer Kebede</b>
+          <small id="sidebar_user_sub">Head officer · Exit Gate</small>
+        </div>
+      </a>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main>
+      <div class="top">
+        <div>
+          <h1>Exit Gate Dashboard</h1>
+          <p class="muted">Manual officer observations and backend authorization · no camera or barrier control is connected</p>
+        </div>
+        <div class="tr">
+          <a href="fill-form.html" class="btn sm" style="text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Fill Goods Declaration
+          </a>
+          <span class="pill"><i class="dot"></i> Hardware not connected</span>
+          <button class="pill" type="button" data-action="toggle-lang">EN | አማ</button>
+          <button class="pill" type="button" data-action="toggle-theme">☾ Dark</button>
+          <span class="pill">Day shift · 06:00–18:00</span>
+        </div>
+      </div>
+
+      <!-- Metrics Band -->
+      <div class="band" style="grid-template-columns: repeat(5, 1fr);">
+        <div class="stat"><span>Departures Scheduled</span><b data-dashboard="expected_schedules_today">—</b></div>
+        <div class="stat"><span>Vehicle exits · 24h</span><b data-dashboard="vehicle_exits">—</b></div>
+        <div class="stat"><span>Granted events · 24h</span><b data-dashboard="gate_granted">—</b></div>
+        <div class="stat"><span>Vehicles Inside</span><b data-dashboard="vehicle_presence">—</b></div>
+        <div class="stat"><span>Exit lane</span><b style="font-size: 16px;">Not connected</b></div>
+      </div>
+
+      <div class="band">
+        <div class="cams">
+          <div class="cam big">
+            <div>
+              <b>Manual vehicle observation</b>
+            </div>
+            <div class="muted">No live camera or ANPR integration is connected.</div>
+          </div>
+          <div class="cam">No live video streams available</div>
+        </div>
+      </div>
+
+      <div class="band" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+        <form class="panel" id="exit_access_form">
+          <h3>Record observed vehicle exit attempt</h3>
+          <p class="muted">The backend checks current presence, vehicle status, and gate assignment. It does not operate a barrier.</p>
+          <div class="field"><label for="exit_observed_plate">Observed plate</label><input class="inp" id="exit_observed_plate" name="plate" required></div>
+          <div class="field"><label for="exit_gate_id">Assigned exit gate</label><select class="inp" id="exit_gate_id" name="gate_id" required></select></div>
+          <div class="field"><label for="exit_lane_id">Lane</label><select class="inp" id="exit_lane_id" name="lane_id"></select></div>
+          <button class="btn" type="submit">Record authorization result</button>
+        </form>
+        <form class="panel" id="exit_goods_access_form">
+          <h3>Record goods exit attempt</h3>
+          <p class="muted">Use only an approved goods declaration and confirm that the cargo is physically at the gate.</p>
+          <div class="field"><label for="exit_goods_reference">Approved declaration reference</label><input class="inp" id="exit_goods_reference" name="goods_reference" required></div>
+          <div class="field"><label for="exit_goods_gate_id">Assigned exit gate</label><select class="inp" id="exit_goods_gate_id" name="gate_id" required></select></div>
+          <div class="field"><label for="exit_goods_lane_id">Lane</label><select class="inp" id="exit_goods_lane_id" name="lane_id"></select></div>
+          <button class="btn warn" type="submit">Record goods exit result</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="../../js/core/utilities.js"></script>
+  <script src="../../js/core/theme.js"></script>
+  <script src="../../js/core/navigation.js"></script>
+  <script src="../../js/core/modal.js"></script>
+  <script src="../../js/core/notifications.js"></script>
+  <script src="../../js/components/approval-badge.js"></script>
+  <script src="../../js/components/gate-controls.js"></script>
+  <script src="../../js/components/pdf-export.js"></script>
+  <script src="../../js/data/api-client.js"></script>
+  <script src="../../js/exit/exit.js"></script>
+  <script src="../../js/app.js"></script>
+</body>
+</html>

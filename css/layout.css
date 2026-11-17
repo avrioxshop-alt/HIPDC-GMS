@@ -1,0 +1,208 @@
+/* ==========================================================================
+   HIPDC Gate & Logistics Management - Layout & Shell Architecture
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', 'Noto Sans Ethiopic', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Master application shell */
+.shell {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar navigation */
+aside {
+  width: 260px;
+  background: var(--side);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  flex-shrink: 0;
+  color: #ffffff;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+/* Brand banner in sidebar */
+.sbrand {
+  border: 1px solid var(--side-border);
+  background: var(--side-item-bg);
+  border-radius: var(--border-radius-lg);
+  padding: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sbrand small {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  opacity: 0.8;
+}
+
+.sbrand b {
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.sbrand span {
+  color: var(--sky);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Main workspace area */
+main {
+  flex: 1;
+  padding: 24px 28px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: var(--bg);
+  overflow-y: auto;
+}
+
+/* Top header bar */
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.top h1 {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+
+.top .muted {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.tr {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Content cards and panels */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel.flush {
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Metric / Statistics band */
+.band {
+  background: var(--panel);
+  border-radius: var(--border-radius-xl);
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.band.soft .stat {
+  background: var(--bg);
+  border: none;
+}
+
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--border-radius-lg);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.stat b {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+/* Split content layout */
+.split {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.split.equal {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Detailed entity row */
+.row {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  gap: 16px;
+}
+
+/* Dynamic grid columns */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--n, 3), 1fr);
+  gap: 14px;
+}
+
+/* Section titles */
+.sec {
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  color: var(--primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 6px;
+  margin-bottom: -4px;
+}

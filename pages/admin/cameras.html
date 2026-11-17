@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camera Metadata · HIPDC Gate &amp; Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="sbrand">
+        <small>HIPDC Administration</small>
+        <b>Park Console</b>
+        <span>Headquarters · All Gates</span>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; gap: 8px;">
+        <a href="dashboard.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+          Dashboard
+        </a>
+        <a href="approvals.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>
+          Approvals
+          <span class="bd" data-pending-badge style="display: none;">0</span>
+        </a>
+        <a href="schedules.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          Schedules
+        </a>
+        <a href="visitors.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v7h-4"/></svg>
+          Visitors
+        </a>
+        <a href="vehicles.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M4 17v-4l2-5h12l2 5v4M7 17v2M17 17v2"/></svg>
+          Reg. Vehicles
+        </a>
+        <a href="logistics.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+          Logistics
+        </a>
+        <a href="cameras.html" class="nav on">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h13v9H3zM16 11l5-3v9l-5-3"/></svg>
+          Cameras
+        </a>
+        <a href="users.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6M17 14c3 0 5 2 5 5"/></svg>
+          Users &amp; Roles
+        </a>
+      </nav>
+
+      <a href="../auth/login.html" class="user" data-action="logout" title="Sign out">
+        <div class="av" id="sidebar_user_av">SM</div>
+        <div>
+          <b id="sidebar_user_name">Admin Selam</b>
+          <small id="sidebar_user_sub">Park Administration</small>
+        </div>
+      </a>
+    </aside>
+
+    <main>
+      <div class="top">
+        <div>
+          <h1>Camera Metadata</h1>
+          <p class="muted">Registration and monitoring status only · no live video, ANPR, or hardware connection</p>
+        </div>
+        <div class="tr">
+          <button class="btn sm" onclick="HIPDC_Admin.openCameraModal()">Register camera metadata</button>
+          <button class="pill" type="button" data-action="toggle-lang">EN | አማ</button>
+          <button class="pill" type="button" data-action="toggle-theme">☾ Dark</button>
+        </div>
+      </div>
+
+      <div class="panel scroll">
+        <table>
+          <thead><tr><th>Name</th><th>Gate</th><th>Lane</th><th>Model</th><th>Status</th><th>Monitoring metadata</th><th>Action</th></tr></thead>
+          <tbody id="camera_metadata_list"><tr><td colspan="7">Loading camera metadata…</td></tr></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="../../js/core/utilities.js"></script>
+  <script src="../../js/core/theme.js"></script>
+  <script src="../../js/core/navigation.js"></script>
+  <script src="../../js/core/modal.js"></script>
+  <script src="../../js/core/notifications.js"></script>
+  <script src="../../js/components/approval-badge.js"></script>
+  <script src="../../js/components/gate-controls.js"></script>
+  <script src="../../js/components/pdf-export.js"></script>
+  <script src="../../js/data/api-client.js"></script>
+  <script src="../../js/admin/admin.js"></script>
+  <script src="../../js/app.js"></script>
+</body>
+</html>

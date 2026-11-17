@@ -1,0 +1,237 @@
+/* ==========================================================================
+   HIPDC Gate & Logistics Management - Forms, Inputs & Auth System
+   ========================================================================== */
+
+/* ---------- Login & Authentication Screen ---------- */
+.login {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.brand {
+  width: 50%;
+  background: linear-gradient(180deg, #0f2a3f, #1f5f8b 55%, #2f6a92);
+  color: #ffffff;
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+[data-theme="dark"] .brand {
+  background: linear-gradient(180deg, #07121b, #123a57 55%, #1d4d6e);
+}
+
+.logo {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 1.5px;
+}
+
+.mark {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--border-radius-md);
+  background: var(--sky);
+  display: grid;
+  place-items: center;
+  color: #0f2a3f;
+}
+
+.brand h1 {
+  font-size: 52px;
+  line-height: 1.15;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.brand p {
+  color: #cfe3f3;
+  font-size: 16px;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.brand small {
+  color: var(--sky);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.formside {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  position: relative;
+  padding: 32px 24px;
+  background: var(--bg);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow);
+  padding: 40px;
+  width: 460px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+}
+
+/* ---------- Form Controls ---------- */
+.lbl, label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.inp,
+.field input,
+.field select,
+.field textarea,
+select.inp {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--border-radius-sm);
+  padding: 10px 14px;
+  color: var(--ink);
+  font-size: 13px;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.inp:focus,
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(31, 95, 139, 0.15);
+  background: var(--surface);
+}
+
+textarea,
+.field textarea {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Input with leading icon */
+.ico {
+  position: relative;
+  width: 100%;
+}
+
+.ico svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.ico input {
+  padding-left: 38px;
+}
+
+/* Segmented selector */
+.seg {
+  background: var(--panel);
+  border-radius: var(--border-radius-md);
+  padding: 4px;
+  display: flex;
+  gap: 4px;
+}
+
+.seg button, .seg a {
+  flex: 1;
+  padding: 9px;
+  border-radius: 9px;
+  background: none;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 12.5px;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+}
+
+.seg button.on, .seg a.on {
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+/* File Upload Zone */
+.upl {
+  border: 1.5px dashed var(--line);
+  border-radius: var(--border-radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 120px;
+  color: var(--muted);
+  background: var(--bg);
+  cursor: pointer;
+  padding: 16px;
+  text-align: center;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.upl:hover {
+  border-color: var(--primary);
+  background: var(--surface);
+}
+
+/* Top toolbar & Search bar */
+.bar {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bar .inp, .bar .search-input {
+  width: 320px;
+  max-width: 100%;
+}
+
+/* Validation states */
+.err, .invalid-feedback {
+  color: var(--c-bad);
+  font-size: 11.5px;
+  margin-top: 4px;
+}
+
+.is-invalid {
+  border-color: var(--c-bad) !important;
+}

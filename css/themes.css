@@ -1,0 +1,103 @@
+/* ==========================================================================
+   HIPDC Gate & Logistics Management - Theme Tokens & Variables
+   Supports Light & Dark Modes + Ethiopian & International Typography
+   ========================================================================== */
+
+:root {
+  /* Core Surface & Typography */
+  --bg: #eef2f5;
+  --surface: #ffffff;
+  --line: #d5dde4;
+  --ink: #0e1b26;
+  --muted: #5b6b79;
+  --panel: #e3e9ee;
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 18px;
+  --border-radius-xl: 24px;
+
+  /* Primary Brand - HIPDC Corporate Blue */
+  --primary: #1f5f8b;
+  --primary-hover: #174b6f;
+  --primary-active: #103650;
+  --onprimary: #ffffff;
+  --sky: #9cd3ff;
+  --sky-dark: #6eb7f2;
+  --soft: #dbe9f6;
+
+  /* Elevation & Shadows */
+  --shadow-sm: 0 2px 6px rgba(15, 41, 64, 0.05);
+  --shadow: 0 4px 12px rgba(15, 41, 64, 0.08);
+  --shadow-lg: 0 10px 28px rgba(15, 41, 64, 0.14);
+  --shadow-modal: 0 18px 48px rgba(15, 41, 64, 0.28);
+
+  /* Status Tokens */
+  --c-warn-bg: #fdebd0;
+  --c-warn: #b9740a;
+  --c-warn-border: #f7cd90;
+
+  --c-ok-bg: #dcf3e5;
+  --c-ok: #1f8a4c;
+  --c-ok-border: #a8e5be;
+
+  --c-info-bg: #dbe9f6;
+  --c-info: #1f5f8b;
+  --c-info-border: #b8d4ee;
+
+  --c-bad-bg: #fadcdc;
+  --c-bad: #c93a3a;
+  --c-bad-border: #f5b3b3;
+
+  /* Sidebar Gradient */
+  --side: linear-gradient(180deg, #0f2a3f 0%, #1f5f8b 55%, #2a6892 100%);
+  --side-border: rgba(255, 255, 255, 0.16);
+  --side-item-bg: rgba(255, 255, 255, 0.08);
+  --side-item-hover: rgba(255, 255, 255, 0.18);
+
+  /* Transition speeds */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+[data-theme="dark"] {
+  --bg: #0b141c;
+  --surface: #14212c;
+  --line: #263644;
+  --ink: #e8f0f6;
+  --muted: #8fa4b5;
+  --panel: #1b2b38;
+
+  --primary: #3a86bd;
+  --primary-hover: #4e9bd3;
+  --primary-active: #66b0e8;
+  --onprimary: #ffffff;
+  --sky: #9cd3ff;
+  --sky-dark: #6eb7f2;
+  --soft: #1a3550;
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.3);
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.6);
+  --shadow-modal: 0 18px 50px rgba(0, 0, 0, 0.75);
+
+  --c-warn-bg: #3a2d14;
+  --c-warn: #f0b34f;
+  --c-warn-border: #614b22;
+
+  --c-ok-bg: #15331f;
+  --c-ok: #52c97f;
+  --c-ok-border: #215132;
+
+  --c-info-bg: #17324a;
+  --c-info: #8cc8f5;
+  --c-info-border: #234c6e;
+
+  --c-bad-bg: #3d1c1f;
+  --c-bad: #f07b7b;
+  --c-bad-border: #662f34;
+
+  --side: linear-gradient(180deg, #07121b 0%, #123a57 55%, #0b141c 100%);
+  --side-border: rgba(255, 255, 255, 0.12);
+  --side-item-bg: rgba(255, 255, 255, 0.06);
+  --side-item-hover: rgba(255, 255, 255, 0.14);
+}

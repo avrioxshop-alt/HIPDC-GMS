@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entry Logistics Records · HIPDC Gate &amp; Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="sbrand">
+        <small>HIPDC Security</small>
+        <b>Gate Management</b>
+        <span>Entry Gate · Lane 1</span>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; gap: 8px;">
+        <a href="dashboard.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+          Dashboard
+        </a>
+        <a href="schedules.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          Schedules
+        </a>
+        <a href="vehicles.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M4 17v-4l2-5h12l2 5v4M7 17v2M17 17v2"/></svg>
+          Reg. Vehicles
+        </a>
+        <a href="logistics.html" class="nav on">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+          Logistics
+        </a>
+      </nav>
+
+      <a href="../auth/login.html" class="user" data-action="logout" title="Sign out">
+        <div class="av" id="sidebar_user_av">AK</div>
+        <div>
+          <b id="sidebar_user_name">Officer Abebe</b>
+          <small id="sidebar_user_sub">Head officer · Entry Gate</small>
+        </div>
+      </a>
+    </aside>
+
+    <main>
+      <div class="top">
+        <div>
+          <h1>Entry Gate Access Log</h1>
+          <p class="muted">Authorized and denied event records for today · not proof of physical crossing</p>
+        </div>
+        <div class="tr">
+          <button class="pill" type="button" data-action="toggle-lang">EN | አማ</button>
+          <button class="pill" type="button" data-action="toggle-theme">☾ Dark</button>
+          <span class="pill">Today</span>
+        </div>
+      </div>
+
+      <div class="band soft" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="stat"><span>Vehicles Let In · 24h</span><b data-dashboard="vehicle_entries">—</b></div>
+        <div class="stat"><span>Scheduled Arrivals Today</span><b data-dashboard="expected_schedules_today">—</b></div>
+        <div class="stat"><span>Visitors Present</span><b data-dashboard="visitor_presence">—</b></div>
+        <div class="stat"><span>Pending Approvals</span><b data-dashboard="pending_approvals">—</b></div>
+      </div>
+
+      <div class="panel">
+        <div class="bar">
+          <input class="inp" id="logistics_search" placeholder="Search plate, driver, or tenant company...">
+          <div class="tr">
+            <label class="muted" for="logistics_from">From</label><input class="inp" type="date" id="logistics_from">
+            <label class="muted" for="logistics_to">To</label><input class="inp" type="date" id="logistics_to">
+          </div>
+        </div>
+
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Plate</th>
+                <th>Driver</th>
+                <th>Company</th>
+                <th>Type</th>
+                <th>Authorization result</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody id="entry_logistics_tbody">
+              <!-- Dynamically populated, shows clean empty state when empty -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="../../js/core/utilities.js"></script>
+  <script src="../../js/core/theme.js"></script>
+  <script src="../../js/core/navigation.js"></script>
+  <script src="../../js/core/modal.js"></script>
+  <script src="../../js/core/notifications.js"></script>
+  <script src="../../js/components/approval-badge.js"></script>
+  <script src="../../js/components/gate-controls.js"></script>
+  <script src="../../js/components/pdf-export.js"></script>
+  <script src="../../js/data/api-client.js"></script>
+  <script src="../../js/entry/entry.js"></script>
+  <script src="../../js/app.js"></script>
+</body>
+</html>

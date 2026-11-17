@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In · HIPDC Gate &amp; Logistics Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <div class="login">
+    <!-- Brand Visual Column -->
+    <div class="brand">
+      <div class="logo">
+        <div class="mark">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 17h14M4 17v-4l2-5h12l2 5v4M7 17v2M17 17v2"/>
+          </svg>
+        </div>
+        HIPDC
+      </div>
+      <div>
+        <h1>Gate &amp;<br>Logistics<br>Management</h1>
+        <p>Hawassa Industrial Park Development Corporation — one centralized platform to control, verify, and approve every vehicle and cargo manifest entering and leaving the park compound.</p>
+      </div>
+      <small>© 2026 HIPDC · Authorized Security Personnel Only</small>
+    </div>
+
+    <!-- Interactive Login Form Column -->
+    <div class="formside">
+      <div class="tr" style="position: absolute; top: 28px; right: 32px;">
+        <button class="pill" type="button" data-action="toggle-lang">EN | አማ</button>
+        <button class="pill" type="button" data-action="toggle-theme">☾ Dark</button>
+      </div>
+
+      <div class="card">
+        <div>
+          <h2>Welcome back</h2>
+          <p class="muted">Sign in with your officer or admin security credentials</p>
+        </div>
+
+        <!-- Form prepared for PHP backend POST handling -->
+        <form id="loginForm" method="POST" action="../../api/auth/login.php" style="display: flex; flex-direction: column; gap: 18px;">
+          <div>
+            <span class="lbl">Signing in as</span>
+            <div class="seg">
+              <button type="button" class="on" data-role="entry">Entry gate</button>
+              <button type="button" data-role="exit">Exit gate</button>
+              <button type="button" data-role="admin">Admin</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="lbl" for="username">Username</label>
+            <div class="ico">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>
+              </svg>
+              <input class="inp" id="username" name="username" placeholder="Username" required autocomplete="username">
+            </div>
+          </div>
+
+          <div>
+            <label class="lbl" for="password">Password</label>
+            <div class="ico">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="10" width="16" height="11" rx="3"/><path d="M8 10V7a4 4 0 018 0v3"/>
+              </svg>
+              <input class="inp" id="password" name="password" type="password" placeholder="••••••••" required autocomplete="current-password">
+            </div>
+          </div>
+
+          <button class="btn" type="submit">Sign in</button>
+
+          <p class="muted" style="text-align: center; font-size: 12px; margin-top: 4px;">
+            Forgot your password? Contact the Park Administrator.<br>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Core Scripts -->
+  <script src="../../js/core/utilities.js"></script>
+  <script src="../../js/core/theme.js"></script>
+  <script src="../../js/core/navigation.js"></script>
+  <script src="../../js/core/modal.js"></script>
+  <script src="../../js/core/notifications.js"></script>
+  <script src="../../js/data/api-client.js"></script>
+  <script src="../../js/auth/login.js"></script>
+  <script src="../../js/app.js"></script>
+</body>
+</html>

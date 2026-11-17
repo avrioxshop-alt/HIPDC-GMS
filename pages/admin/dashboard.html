@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard · HIPDC Gate &amp; Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="sbrand">
+        <small>HIPDC Administration</small>
+        <b>Park Console</b>
+        <span>Headquarters · All Gates</span>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; gap: 8px;">
+        <a href="dashboard.html" class="nav on">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+          Dashboard
+        </a>
+        <a href="approvals.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>
+          Approvals
+          <span class="bd" data-pending-badge style="display: none;">0</span>
+        </a>
+        <a href="schedules.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          Schedules
+        </a>
+        <a href="visitors.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3M21 14v7h-4"/></svg>
+          Visitors
+        </a>
+        <a href="vehicles.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M4 17v-4l2-5h12l2 5v4M7 17v2M17 17v2"/></svg>
+          Reg. Vehicles
+        </a>
+        <a href="logistics.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>
+          Logistics
+        </a>
+        <a href="cameras.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h13v9H3zM16 11l5-3v9l-5-3"/></svg>
+          Cameras
+        </a>
+        <a href="users.html" class="nav">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6M17 14c3 0 5 2 5 5"/></svg>
+          Users &amp; Roles
+        </a>
+      </nav>
+
+      <a href="../auth/login.html" class="user" data-action="logout" title="Sign out">
+        <div class="av" id="sidebar_user_av">SM</div>
+        <div>
+          <b id="sidebar_user_name">Admin Selam</b>
+          <small id="sidebar_user_sub">Park Administration</small>
+        </div>
+      </a>
+    </aside>
+
+    <main>
+      <div class="top">
+        <div>
+          <h1>Central Operations Dashboard</h1>
+          <p class="muted">Operational summary from backend records · last 24 hours</p>
+        </div>
+        <div class="tr">
+          <button class="btn sm" onclick="HIPDC_Admin.openScheduleModal()">+ Schedule a Vehicle</button>
+          <button class="pill" type="button" data-action="toggle-lang">EN | አማ</button>
+          <button class="pill" type="button" data-action="toggle-theme">☾ Dark</button>
+          <span class="pill">Wed 11 Nov 2026</span>
+        </div>
+      </div>
+
+      <!-- High Level Metrics Band -->
+      <div class="band" style="grid-template-columns: repeat(6, 1fr);">
+        <div class="stat"><span>Scheduled today</span><b data-dashboard="expected_schedules_today">—</b></div>
+        <div class="stat"><span>Vehicle entries</span><b data-dashboard="vehicle_entries">—</b></div>
+        <div class="stat"><span>Vehicle exits</span><b data-dashboard="vehicle_exits">—</b></div>
+        <div class="stat"><span>Vehicles present</span><b data-dashboard="vehicle_presence">—</b></div>
+        <div class="stat"><span>Visitors present</span><b data-dashboard="visitor_presence">—</b></div>
+        <div class="stat" style="border-color: var(--c-warn-border);">
+          <span>Pending Approvals</span>
+          <b style="color: var(--c-warn);" data-pending-badge>2</b>
+        </div>
+      </div>
+
+      <!-- Split Workflow Layout -->
+      <div class="split">
+        <!-- Left: Pending Approval Requests & Needs Attention -->
+        <div class="panel">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <h3>Needs Your Decision</h3>
+              <p class="muted">Gate security officers are actively waiting on these clearance requests</p>
+            </div>
+            <a href="approvals.html" class="btn sm soft" style="text-decoration: none;">View All Approvals</a>
+          </div>
+
+          <div id="admin_dashboard_needs_approval" style="display: flex; flex-direction: column; gap: 12px;">
+            <!-- Dynamically populated with pending approvals and action buttons -->
+          </div>
+
+          <div style="margin-top: 14px;">
+            <h3>Recently Resolved Clearances</h3>
+            <div class="scroll" style="margin-top: 10px;">
+              <table>
+                <thead><tr><th>Request Ref</th><th>Result</th><th>Time</th></tr></thead>
+                <tbody id="admin_recent_approvals"><tr><td colspan="3" class="muted">Loading backend approvals…</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Camera metadata and backend activity -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="cam" id="admin_camera_summary" style="height: 220px;">
+          <div><b>Camera metadata inventory</b></div>
+          <div class="muted">No live feeds or ANPR hardware are connected.</div>
+          </div>
+
+          <div class="panel">
+            <h3>Recent Compound Activity</h3>
+            <div class="scroll">
+              <table>
+                <thead><tr><th>Time</th><th>Gate Event</th></tr></thead>
+                <tbody id="admin_recent_events"><tr><td colspan="2" class="muted">Loading backend events…</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Scripts -->
+  <script src="../../js/core/utilities.js"></script>
+  <script src="../../js/core/theme.js"></script>
+  <script src="../../js/core/navigation.js"></script>
+  <script src="../../js/core/modal.js"></script>
+  <script src="../../js/core/notifications.js"></script>
+  <script src="../../js/components/approval-badge.js"></script>
+  <script src="../../js/components/gate-controls.js"></script>
+  <script src="../../js/components/pdf-export.js"></script>
+  <script src="../../js/data/api-client.js"></script>
+  <script src="../../js/admin/admin.js"></script>
+  <script src="../../js/app.js"></script>
+</body>
+</html>

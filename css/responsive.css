@@ -1,0 +1,165 @@
+/* ==========================================================================
+   HIPDC Gate & Logistics Management - Responsive & Print Architecture
+   ========================================================================== */
+
+/* Tablet & Smaller Screens */
+@media (max-width: 1024px) {
+  .shell {
+    flex-direction: column;
+  }
+
+  aside {
+    width: 100%;
+    height: auto;
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 12px 18px;
+    gap: 10px;
+  }
+
+  .sbrand {
+    margin-bottom: 0;
+    padding: 8px 14px;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav {
+    width: auto;
+    padding: 8px 12px;
+  }
+
+  .user {
+    margin: 0 0 0 auto;
+    padding: 6px 12px;
+  }
+
+  main {
+    padding: 16px;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .cams {
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+  }
+
+  .cam.big {
+    grid-column: span 2;
+    grid-row: auto;
+    min-height: 260px;
+  }
+
+  .grid {
+    --n: 2 !important;
+  }
+}
+
+/* Mobile Screens */
+@media (max-width: 768px) {
+  .login .brand {
+    display: none;
+  }
+
+  .formside {
+    padding: 20px 16px;
+  }
+
+  .card {
+    padding: 24px;
+    width: 100%;
+  }
+
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tr {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bar .inp, .bar .search-input {
+    width: 100%;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    --n: 1 !important;
+  }
+
+  .band {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .cams {
+    grid-template-columns: 1fr;
+  }
+
+  .cam.big {
+    grid-column: span 1;
+  }
+
+  .modal {
+    padding: 18px;
+    width: 95vw;
+  }
+
+  .acts {
+    flex-direction: column;
+  }
+
+  .acts .btn {
+    width: 100%;
+  }
+}
+
+/* Print Stylesheet for Official PDF Exit Logs & Gate Passes */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  aside,
+  .top .tr,
+  .acts,
+  .btn,
+  .demo,
+  #toast,
+  .cams,
+  .bar,
+  .pill {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  .panel, .card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .print-page {
+    page-break-after: always;
+  }
+}

@@ -1,0 +1,88 @@
+/* ==========================================================================
+   HIPDC Gate & Logistics Management - Tables & Data Grids
+   ========================================================================== */
+
+.scroll {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--border-radius-md);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+th {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: capitalize;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+  background: var(--surface);
+}
+
+td {
+  padding: 14px 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  vertical-align: middle;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr.click {
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+tr.click:hover {
+  background: rgba(31, 95, 139, 0.04);
+}
+
+tr.sel {
+  background: var(--bg);
+  font-weight: 500;
+}
+
+td:first-child {
+  font-weight: 500;
+}
+
+/* Action button grouping inside tables */
+td .tr {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Table Empty state row */
+td.table-empty {
+  text-align: center;
+  padding: 42px 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+td.table-empty svg {
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+
+/* Specific columns */
+.col-plate {
+  font-family: monospace;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.col-time {
+  font-weight: 600;
+  color: var(--ink);
+}
